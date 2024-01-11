@@ -1,7 +1,8 @@
-# Título Genérico
+# Algoritmos y Progrmación (Unimet)
 
-Este es un test
+Clase BPTSP05-1
+Trimestre 2324-2
 
 ## Subtítulo
 
-Lorem impsum dolor
+Lorem ipsum dolor
