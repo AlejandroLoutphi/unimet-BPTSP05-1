@@ -1,5 +1,5 @@
 def input_to_posfloat(prompt):
-    while(True):
+    while True:
         input_string = input(prompt)
         try:
             result = float(input_string)
@@ -22,7 +22,7 @@ print("El volumen total de arepas es " + str(total) + " tazas")
 print("Se podrían hacer " + str(int(total // arepa)) + " arepas")
 
 sobras = total % arepa
-if(sobras == 0):
+if sobras == 0:
     print("No sobraría nada. ¡Bien hecho!")
 else:
     print("Sobrarían " + str(sobras) + " tazas")

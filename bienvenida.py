@@ -1,4 +1,4 @@
-while(True):
+while True:
     gender = input("¿Eres chico o chica?\n")
 
     if gender.lower() == "chico":
@@ -13,7 +13,7 @@ print("Bienvenid" + x + " al mundo de los Pokémon")
 
 age = input("¿Qué edad tienes?\n")
 
-while(True):
+while True:
     try:
         age = int(age)
     except:
@@ -26,4 +26,4 @@ while(True):
 
 if age < 10:
     print("No tienes edad para ser entrenador" + 'a'*(x=='a'))
-    quit();
+    quit()
