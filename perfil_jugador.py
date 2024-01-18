@@ -12,18 +12,16 @@ while True:
     break
 print("Bienvenid" + x + " al mundo de los Pokémon")
 
-age = input("¿Qué edad tienes?\n")
-
 while True:
+    age = input("¿Qué edad tienes?\n")
     try:
         age = int(age)
     except:
-        print("Responde un número válido")
+        pass
     else:
         if age > 0:
             break
-        else:
-            print("Responde un número válido")
+    print("Responde un número válido")
 
 if age < 10:
     print("No tienes edad para ser entrenador" + 'a'*(x=='a'))
