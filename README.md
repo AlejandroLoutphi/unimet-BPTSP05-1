@@ -3,7 +3,3 @@
 Clase BPTSP05-1
 
 Trimestre 2324-2
-
-## Subtítulo
-
-Lorem ipsum dolor
