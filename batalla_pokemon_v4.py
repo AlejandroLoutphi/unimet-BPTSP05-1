@@ -26,11 +26,9 @@ while True:
             if attack_values[x][2] is not None:
                 time.sleep(0.5)
                 print(attack_values[x][2])
-            opponent_values = (opponent_values[0] + attack_values[x][0] * 100/opponent_values[1]), (opponent_values[1] + attack_values[x][1])
+            opponent_values = (opponent_values[0] + attack_values[x][0] * 100/opponent_values[1]), max(1, opponent_values[1] + attack_values[x][1])
             if opponent_values[0] <= 0:
                 break
-            if opponent_values[1] <= 0:
-                opponent_values[1] = 1
         else:
             print("Inserta una de las opciones posibles")
             time.sleep(0.5)
@@ -44,11 +42,9 @@ while True:
     if attack_values[x][2] is not None:
         time.sleep(0.5)
         print(attack_values[x][2])
-    player_values = (player_values[0] + attack_values[x][0] * 100/player_values[1]), (player_values[1] + attack_values[x][1])
+    player_values = (player_values[0] + attack_values[x][0] * 100/player_values[1]), max(1, player_values[1] + attack_values[x][1])
     if player_values[0] <= 0:
         break
-    if player_values[1] <= 0:
-        player_values[1] = 1
 
     time.sleep(0.5)
     opponent_starts = 0
