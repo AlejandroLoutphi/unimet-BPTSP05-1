@@ -51,14 +51,14 @@ def input_int(prompt, min=None, max=None):
         elif not min is None: print("El número debe ser mayor a " + str(min))
         else: print("El número debe ser menor a " + str(max))
 
-#Función que en la que el usuario añade un vehículo a una lista    
+#Función en la que el usuario añade un vehículo a una lista    
 def add_vehicle(vehicles: list):
     x = input_list_element(
         "¿Qué vehículo desea registrar?\nOpciones: Carro, Barco, Avion\n",
         ["carro", "barco", "avion"])
 
     if x == "carro":
-        brand = input("Cuál es la marca del carro\n")
+        brand = input("¿Cuál es la marca del carro?\n")
         model = input("¿Cuál es el nombre del modelo del carro?\n")
         color = input_list_element(
             "¿De qué color es el carro?\n",
@@ -66,12 +66,12 @@ def add_vehicle(vehicles: list):
         year = input_int("¿En qué año se introdujo el carro al mercado?\n", 1908, 2024)
         vehicles.append(Car(brand, model, color, year))
     elif x == "barco":
-        brand = input("Cuál es la marca del barco\n")
+        brand = input("¿Cuál es la marca del barco?\n")
         model = input("¿Cuál es el nombre del modelo del barco?\n")
         year = input_int("¿En qué año se introdujo el barco al mercado?\n", None, 2024)
         vehicles.append(Boat(brand, model, year))
     elif x == "avion":
-        brand = input("Cuál es la marca del avión\n")
+        brand = input("¿Cuál es la marca del avión?\n")
         model = input("¿Cuál es el nombre del modelo del avión?\n")
         year = input_int("¿En qué año se introdujo el avión al mercado?\n", 1914, 2024)
         vehicles.append(Plane(brand, model, year))
