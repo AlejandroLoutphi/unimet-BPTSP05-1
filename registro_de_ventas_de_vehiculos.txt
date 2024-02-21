@@ -1,0 +1,69 @@
+TDA Vehiculo:
+    atributos dinamicos:
+        Tipo string: nombre, tipo, marca, modelo, color
+        Tipo int: año
+    fin atributos dinamicos
+
+    constructor(in: marca, modelo, color, año):
+        marca <- in: marca
+        modelo <- in: modelo
+        color <- in: color
+        año <- in: año
+    fin constructor
+fin TDA
+
+TDA Vendedor:
+    atributos dinamicos:
+        Tipo string: nombre, direccion
+    fin atributos dinamicos
+
+    constructor(in: nombre, direccion):
+        nombre <- in: nombre 
+        direccion <- in: direccion 
+    fin constructor
+fin TDA
+
+TDA Venta:
+    atributos dinamicos:
+        Tipo Vehiculo: vehiculo
+        Tipo Vendedor: vendedor
+        Tipo int: año
+    fin atributos dinamicos
+
+    constructor(in: vehiculo, vendedor, año):
+        vehiculo <- in: vehiculo 
+        vendedor <- in: vendedor 
+        año <- in: año
+    fin constructor
+fin TDA
+
+funcion registrar_venta():
+    vehiculo <- entrada(prompt: "¿Qué vehiculo ha sido vendido?")
+    vendedor <- entrada(prompt: "¿Qué vendedor lo vendió?")
+    año <- entrada(prompt: "¿En qué año ha sido vendido?")
+    venta <- objeto de tipo Venta donde:
+        in: vehiculo <- vehiculo
+        in: vendedor <- vendedor
+        in: año <- año
+    añadir venta a ventas
+fin funcion
+
+funcion ver_registro(ventas):
+    para cada objeto venta en ventas:
+        imprimir(vehiculo)
+        imprimir(vendedor)
+        imprimir(año)
+    fin bucle
+fin funcion
+
+funcion principal(): 
+    sea vehiculos una lista de objetos de tipo Vehiculo predifinida
+    sea vendedores una lista de objetos de tipo Vendedor predefinida
+    sea ventas una lista de objetos de tipo Venta vacía
+
+    opcion <- entrada(prompt: "Elija una opción: 1. Registrar Venta; 2. Ver Registro; 3. Salir"), opciones: 1, 2, 3
+    
+    si opcion es 1: registrar_venta()
+    si opcion es 2: ver_registro()
+    si opcion es 3: salir()
+fin funcion
