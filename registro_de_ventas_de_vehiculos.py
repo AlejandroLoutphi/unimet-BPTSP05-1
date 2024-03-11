@@ -8,7 +8,7 @@ class Vehicle:
         self.year = year
         self.color = color
     def __str__(self):
-        return ("Nombre: " + self.name + "\nMarca: " + self.brand + "\nTipo: " + self.type + "\nModelo: " + self.model + "\nAño: " + str(self.year) + "Color:" + self.color)
+        return ("Nombre: " + self.name + "\nMarca: " + self.brand + "\nTipo: " + self.type + "\nModelo: " + self.model + "\nAño: " + str(self.year) + "\nColor:" + self.color)
     
 class Seller:
     def __init__(self, name, address):
