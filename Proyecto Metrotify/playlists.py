@@ -24,6 +24,7 @@ from usuarios import remove_user1_to_user2_likes_from_ids
 from musica import print_most_streamed_songs_by_musician
 from musica import print_liked_album_names
 from musica import print_liked_song_names
+from funcs import matplotlib_barchart
 import json
 
 class Playlist:
@@ -142,18 +143,19 @@ def print_created_playlists(user_id: str):
 
 def print_most_streamed_listeners():
     '''
-    Hace print a los 5 listeners cuyos playlists tienen las canciones con más streams totales.
+    Hace print y plot a los 5 listeners cuyos playlists tienen las canciones con más streams totales.
     '''
     playlists_dict = read_dict_from_file_or_website_qae("playlists.txt", "https://raw.githubusercontent.com/Algoritmos-y-Programacion/api-proyecto/main/playlists.json")
     playlists = [Playlist(i) for i in playlists_dict]
     song_ids, song_streams = song_id_stream_lists()
     creator_ids = list(set(i.creator for i in playlists))
     creator_playlists = [[i for i in playlists if i.creator==j] for j in creator_ids]
-    creator_songs = [sum([[i for i in j.tracks] for j in k], []) for k in creator_playlists]
-    creator_streams = [sum([song_streams[song_ids.index(i)] for i in j]) for j in creator_songs]
+    creator_songs = [sum([j.tracks for j in k], []) for k in creator_playlists]
+    creator_streams = [sum([song_streams[song_ids.index(i)] for i in j if i in song_ids]) for j in creator_songs]
     top_creator_indexes = sorted([i for i in range(len(creator_streams))], key=lambda i: -creator_streams[i])[:5]
     creator_ids = [creator_ids[i] for i in top_creator_indexes]
-    print("Escuchas con los playlists más escuchados:\n" + '\n\n'.join([str(i+1) + ")" + menu_str_from_user_id(creator_ids[i]) + "\nStreams Totales: " + str(creator_streams[i]) for i in range(len(creator_ids))]))
+    print("Escuchas con los playlists más escuchados:\n" + '\n\n'.join([str(i+1) + ")" + menu_str_from_user_id(creator_ids[i]) + "\nStreams Totales: " + str(creator_streams[top_creator_indexes[i]]) for i in range(len(creator_ids))]))
+    matplotlib_barchart([name_from_user_id(i) for i in creator_ids], [creator_streams[i] for i in top_creator_indexes], "Escuchas más escuchados", "Reproducciones de canciones en playlists")
 
 def search_user_to_play(logged_user_id: str):
     '''

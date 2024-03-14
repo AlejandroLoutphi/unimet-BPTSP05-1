@@ -11,6 +11,7 @@ from funcs import input_list_element
 from funcs import create_id
 from musica import select_artist_album_ret_song_id
 from musica import musician_total_streams
+from funcs import matplotlib_barchart
 import json
 
 class User:
@@ -40,9 +41,6 @@ class User:
         }
         
 class Listener(User):
-    liked_albums: list = None
-    liked_songs: list = None
-    playlists: list = None
     def menu_str(self) -> str:
         '''
         Retorna los parámetros en un formato de str amigable para el usuario.
@@ -58,9 +56,6 @@ class Listener(User):
         return x
 
 class Musician(User):
-    albums: list = None
-    most_viewed: tuple = None
-    total_views: int = None
     def __init__(self, profile_info: dict):
         super().__init__(profile_info)
         try: self.likes = profile_info["likes"]
@@ -245,10 +240,11 @@ def search_artist_ret_song_id() -> str:
 
 def print_most_streamed_musicians():
     '''
-    Hace print a los 5 músicos con más streams totales.
+    Hace print y plot a los 5 músicos con más streams totales.
     '''
     users_dict = read_dict_from_file_or_website_qae("users.txt", "https://raw.githubusercontent.com/Algoritmos-y-Programacion/api-proyecto/main/users.json")
     users = [Musician(i) for i in users_dict if i["type"] == "musician"]
     user_ids = [i.id for i in users]
     x = [users[user_ids.index(j)] for j in sorted(user_ids, key=lambda i: -musician_total_streams(i))[:5]]
     print("Artistas más escuchados:\n" + '\n\n'.join([str(i+1) + ")" + x[i].menu_str() for i in range(len(x))]))
+    matplotlib_barchart([i.name for i in x], [musician_total_streams(i.id) for i in x], "Artistas más escuchados", "Reproducciones totales")

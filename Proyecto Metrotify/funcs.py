@@ -10,6 +10,7 @@ import urllib.request
 import json
 import datetime
 import random
+import matplotlib.pyplot
 
 def get_dict_from_urljson_qae(url: str) -> list:
     '''
@@ -81,3 +82,16 @@ def create_id() -> str:
     d = random.randbytes(2).hex()
     e = random.randbytes(6).hex()
     return a + "-" + b + "-" + c + "-" + d + "-"+ e
+
+def matplotlib_barchart(names: list, values: list, title: str, ylabel: str):
+    '''
+    Hace un barchart en matplotlib.
+    :param names: lista contieniendo los nombres de las barras
+    :param values: lista conteniendo las alturas de las barras
+    :param title: título del gráfico
+    :param ylabel: etiqueta para el eje y
+    '''
+    matplotlib.pyplot.bar(names, values)
+    matplotlib.pyplot.suptitle(title)
+    matplotlib.pyplot.ylabel(ylabel)
+    matplotlib.pyplot.show()

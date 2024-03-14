@@ -10,6 +10,7 @@ from funcs import read_dict_from_file_or_website_qae
 from funcs import input_list_element
 from funcs import iso_str_from_current_time
 from funcs import create_id
+from funcs import matplotlib_barchart
 import json
 import webbrowser
 
@@ -45,7 +46,9 @@ class Song:
         '''
         Abre el link de la canción en el buscador.
         A veces soundcloud reproduce un canción previamente accesada en vez de la canción del link por defecto. 🫤
+        Añade 1 a self.streams (reproducciones)
         '''
+        self.streams+=1
         webbrowser.open(self.link + "#play")
 
 class Album:
@@ -201,9 +204,7 @@ def song_menu(song: Song, logged_user_id: str):
         else: 
             x = input_list_element("¿Qué desea hacer?\n1) Reproducir canción\n2) Likear canción\n3) Salir\n", ['1', '2', '3'])
             if x=='2': new_song.likes.append(logged_user_id)
-        if x=='1':
-            song.play()
-            song.streams+=1
+        if x=='1': song.play()
         if x=='3': break
     album_id, song_id = id_of_album_with_song_qae(albums, song)
     modified_album = albums.pop(album_id)
@@ -336,17 +337,18 @@ def select_artist_album_ret_song_id(artist_id: str) -> str:
 
 def print_most_streamed_songs():
     '''
-    Hace print a las 5 canciones con más streams totales.
+    Hace print y plot a las 5 canciones con más streams totales.
     '''
     albums_dict = read_dict_from_file_or_website_qae("albums.txt", "https://raw.githubusercontent.com/Algoritmos-y-Programacion/api-proyecto/main/albums.json")
     albums = [Album(i) for i in albums_dict]
     songs = song_list_from_album_list(albums)
     x = sorted(songs, key=lambda i: -i.streams)[:5]
     print("Canciones más escuchadas:\n" + '\n\n'.join([str(i+1) + ")" + x[i].menu_str() for i in range(len(x))]))
+    matplotlib_barchart([i.name for i in x], [i.streams for i in x], "Canciones más escuchadas", "Reproducciones")
 
 def print_most_streamed_songs_by_musician(musician_id):
     '''
-    Hace print a las 5 canciones con más streams totales de un músico específico.
+    Hace print y plot a las 5 canciones con más streams totales de un músico específico.
     :param musician_id: ID del músico del cual se van a imprimir sus canciones más populares.
     '''
     albums_dict = read_dict_from_file_or_website_qae("albums.txt", "https://raw.githubusercontent.com/Algoritmos-y-Programacion/api-proyecto/main/albums.json")
@@ -358,12 +360,13 @@ def print_most_streamed_songs_by_musician(musician_id):
 
 def print_most_streamed_albums():
     '''
-    Hace print a los 5 álbumes con más streams totales.
+    Hace print y plot a los 5 álbumes con más streams totales.
     '''
     albums_dict = read_dict_from_file_or_website_qae("albums.txt", "https://raw.githubusercontent.com/Algoritmos-y-Programacion/api-proyecto/main/albums.json")
     albums = [Album(i) for i in albums_dict]
     x = sorted(albums, key=lambda i: -sum([j.streams for j in i.tracklist]))[:5]
     print("Álbumes más escuchados:\n" + '\n\n'.join([str(i+1) + ")" + x[i].menu_str() for i in range(len(x))]))
+    matplotlib_barchart([i.name for i in x], [sum([j.streams for j in i.tracklist]) for i in x], "Álbumes más escuchados", "Reproducciones totales")
 
 def musician_total_streams(musician_id: str) -> int:
     '''
