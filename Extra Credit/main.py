@@ -1,3 +1,9 @@
+#Universidad Metropolitana
+#Proyecto: Metrotify
+#Trimestre 2324-2
+#Algoritmos y Programación (BPTSP05) Sección 1
+#Alejandro Loutphi Trasande y Ayah ZaherAlDeen
+
 import time
 from funcs import input_list_elt
 from funcs import input_posint

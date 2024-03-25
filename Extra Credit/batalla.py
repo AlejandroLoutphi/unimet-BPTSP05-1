@@ -1,3 +1,9 @@
+#Universidad Metropolitana
+#Proyecto: Metrotify
+#Trimestre 2324-2
+#Algoritmos y Programación (BPTSP05) Sección 1
+#Alejandro Loutphi Trasande y Ayah ZaherAlDeen
+
 import random
 import time
 from pokemon import Pokemon, Attack, get_pokemon

@@ -1,3 +1,9 @@
+#Universidad Metropolitana
+#Proyecto: Metrotify
+#Trimestre 2324-2
+#Algoritmos y Programación (BPTSP05) Sección 1
+#Alejandro Loutphi Trasande y Ayah ZaherAlDeen
+
 class PkmType:
     def __init__(self, name: str, strengths: list, weaknesses: list, inmunes: list):
         self.name = name

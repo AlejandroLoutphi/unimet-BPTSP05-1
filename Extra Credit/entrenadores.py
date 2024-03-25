@@ -1,3 +1,9 @@
+#Universidad Metropolitana
+#Proyecto: Metrotify
+#Trimestre 2324-2
+#Algoritmos y Programación (BPTSP05) Sección 1
+#Alejandro Loutphi Trasande y Ayah ZaherAlDeen
+
 class Trainer:
     def __init__(self, name: str, pokemon: None|list =None):
         self.name = name
